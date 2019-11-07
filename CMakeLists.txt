@@ -12,7 +12,7 @@ endif(NOT DEFINED BUILD_SHARED_LIBS)
 
 # libpigpio.(so|a)
 add_library(pigpio pigpio.c command.c custom.cext)
-target_link_libraries(pigpio Threads::Thread)
+target_link_libraries(pigpio Threads::Threads)
 # libpigpiod_if.(so|a)
 add_library(pigpiod_if pigpiod_if.c command.c )
 
