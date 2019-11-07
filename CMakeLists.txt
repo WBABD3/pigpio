@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
 project(pigpio)
+find_package(Threads REQUIRED)
 
-set(CMAKE_C_FLAGS "-O3 -Wall -pthread")
 set(PIGPIO_FLAGS "-L. -lrt")
 #set(DESTDIR ${CMAKE_CURRENT_SOURCE_DIR}/build/dest)
 
@@ -11,13 +11,13 @@ set(BUILD_SHARED_LIBS "ON")
 endif(NOT DEFINED BUILD_SHARED_LIBS)
 
 # libpigpio.(so|a)
-add_library(pigpio pigpio.c command.c custom.cext)
-
+add_library(pigpio pigpio.c command.c custom.cext s)
+target_link_libraries(pigpio Threads::Thread)
 # libpigpiod_if.(so|a)
-add_library(pigpiod_if pigpiod_if.c command.c)
+add_library(pigpiod_if pigpiod_if.c command.c Threads::Threads)
 
 # libpigpiod_if2.(so|a)
-add_library(pigpiod_if2 pigpiod_if2.c command.c)
+add_library(pigpiod_if2 pigpiod_if2.c command.c Threads::Threads)
 
 
 # x_pigpio
@@ -25,7 +25,7 @@ add_executable(x_pigpio x_pigpio.c)
 add_dependencies(x_pigpio pigpio)
 target_link_libraries(x_pigpio
 	${PIGPIO_FLAGS}
-	-lpigpio
+	-lpigpio Threads::Thread
 )
 
 # x_pigpiod_if
@@ -33,7 +33,7 @@ add_executable(x_pigpiod_if x_pigpiod_if.c)
 add_dependencies(x_pigpiod_if pigpiod_if)
 target_link_libraries(x_pigpiod_if
 	${PIGPIO_FLAGS}
-	-lpigpiod_if
+	-lpigpiod_if Threads::Thread
 )
 
 # x_pigpiod_if2
@@ -42,6 +42,7 @@ add_dependencies(x_pigpiod_if2 pigpiod_if2)
 target_link_libraries(x_pigpiod_if2
 	${PIGPIO_FLAGS}
 	-lpigpiod_if2
+	Threads::Thread
 )
 
 # pigpiod
@@ -50,7 +51,8 @@ add_dependencies(pigpiod pigpio)
 target_link_libraries(pigpiod
 	${PIGPIO_FLAGS}
 	-lpigpio
-)
+	Threads::Thread
+	)
 
 # pigs
 add_executable(pigs pigs.c command.c)
