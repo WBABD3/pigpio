@@ -25,7 +25,7 @@ add_executable(x_pigpio x_pigpio.c)
 add_dependencies(x_pigpio pigpio)
 target_link_libraries(x_pigpio
 	${PIGPIO_FLAGS}
-	-lpigpio Threads::Thread
+	-lpigpio Threads::Threads
 )
 
 # x_pigpiod_if
