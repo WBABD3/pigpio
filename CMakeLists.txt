@@ -15,10 +15,11 @@ add_library(pigpio pigpio.c command.c custom.cext)
 target_link_libraries(pigpio Threads::Threads)
 # libpigpiod_if.(so|a)
 add_library(pigpiod_if pigpiod_if.c command.c )
-
+set_target_properties(pigpio PROPERTIES VERSION 0.0.1 SOVERSION 0.0.1)
+set_target_properties(pigpiod_if PROPERTIES VERSION 0.0.1 SOVERSION 0.0.1)
 # libpigpiod_if2.(so|a)
 add_library(pigpiod_if2 pigpiod_if2.c command.c )
-
+set_target_properties(pigpiod_if2 PROPERTIES VERSION 0.0.1 SOVERSION 0.0.1)
 
 # x_pigpio
 add_executable(x_pigpio x_pigpio.c)
