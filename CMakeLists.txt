@@ -33,7 +33,7 @@ add_executable(x_pigpiod_if x_pigpiod_if.c)
 add_dependencies(x_pigpiod_if pigpiod_if)
 target_link_libraries(x_pigpiod_if
 	${PIGPIO_FLAGS}
-	-lpigpiod_if Threads::Thread
+	-lpigpiod_if Threads::Threads
 )
 
 # x_pigpiod_if2
@@ -42,7 +42,7 @@ add_dependencies(x_pigpiod_if2 pigpiod_if2)
 target_link_libraries(x_pigpiod_if2
 	${PIGPIO_FLAGS}
 	-lpigpiod_if2
-	Threads::Thread
+	Threads::Threads
 )
 
 # pigpiod
@@ -51,7 +51,7 @@ add_dependencies(pigpiod pigpio)
 target_link_libraries(pigpiod
 	${PIGPIO_FLAGS}
 	-lpigpio
-	Threads::Thread
+	Threads::Threads
 	)
 
 # pigs
