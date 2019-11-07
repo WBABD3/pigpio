@@ -63,29 +63,32 @@ add_executable(pig2vcd pig2vcd.c command.c)
 
 # install
 install(DIRECTORY
-	DESTINATION ${DESTDIR}/opt/pigpio/cgi
+	DESTINATION opt/pigpio/cgi
 	PATTERN ""
 	PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
 		GROUP_READ GROUP_EXECUTE
 		WORLD_READ WORLD_EXECUTE
+	EXPORT pigpio
 )
 
 install(TARGETS pigpio pigpiod_if pigpiod_if2 pig2vcd pigpiod pigs
-	LIBRARY DESTINATION ${DESTDIR}/lib
-	RUNTIME DESTINATION ${DESTDIR}/bin
-	ARCHIVE DESTINATION ${DESTDIR}/lib
+	LIBRARY DESTINATION lib/
+	RUNTIME DESTINATION bin/
+	ARCHIVE DESTINATION lib/
+	EXPORT pigpio
 )
 
 install(FILES pigpio.h pigpiod_if.h pigpiod_if2.h
-	DESTINATION ${DESTDIR}/include
+	DESTINATION include/
 	PERMISSIONS OWNER_READ OWNER_WRITE
 		GROUP_READ
 		WORLD_READ
+	EXPORT pigpio
 )
-
+install(EXPORT pigpio DESTINATION ${INSTALL_CMAKE_DIR})
 file(GLOB man_1_SRC "*.1")
 install(FILES ${man_1_SRC}
-	DESTINATION ${DESTDIR}/man/man1
+	DESTINATION man/man1
 	PERMISSIONS OWNER_READ OWNER_WRITE
 		GROUP_READ
 		WORLD_READ
@@ -93,7 +96,7 @@ install(FILES ${man_1_SRC}
 
 file(GLOB man_3_SRC "*.3")
 install(FILES ${man_3_SRC}
-	DESTINATION ${DESTDIR}/man/man3
+	DESTINATION man/man3
 	PERMISSIONS OWNER_READ OWNER_WRITE
 		GROUP_READ
 		WORLD_READ
