@@ -68,14 +68,14 @@ install(DIRECTORY
 	PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ
 		GROUP_READ GROUP_EXECUTE
 		WORLD_READ WORLD_EXECUTE
-	EXPORT pigpio
+	
 )
 
 install(TARGETS pigpio pigpiod_if pigpiod_if2 pig2vcd pigpiod pigs
 	LIBRARY DESTINATION lib/
 	RUNTIME DESTINATION bin/
 	ARCHIVE DESTINATION lib/
-	EXPORT pigpio
+	
 )
 
 install(FILES pigpio.h pigpiod_if.h pigpiod_if2.h
@@ -83,9 +83,8 @@ install(FILES pigpio.h pigpiod_if.h pigpiod_if2.h
 	PERMISSIONS OWNER_READ OWNER_WRITE
 		GROUP_READ
 		WORLD_READ
-	EXPORT pigpio
+	
 )
-install(EXPORT pigpio DESTINATION ./)
 file(GLOB man_1_SRC "*.1")
 install(FILES ${man_1_SRC}
 	DESTINATION man/man1
