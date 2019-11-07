@@ -85,7 +85,7 @@ install(FILES pigpio.h pigpiod_if.h pigpiod_if2.h
 		WORLD_READ
 	EXPORT pigpio
 )
-install(EXPORT pigpio DESTINATION ${INSTALL_CMAKE_DIR})
+install(EXPORT pigpio DESTINATION ./)
 file(GLOB man_1_SRC "*.1")
 install(FILES ${man_1_SRC}
 	DESTINATION man/man1
